@@ -1,0 +1,12 @@
+[Unit]
+Description=grabserial logging
+DefaultDependencies=no
+After=local-fs.target time-sync.target
+
+[Service]
+Type=oneshot
+Environment="TERM=linux-c-nc"
+ExecStart=grabserial -d /dev/ttyUSB0 -b 115200 -Q -o "/home/pi/ttl__%%Y-%%m-%%d_%%H-%%M-%%S.log" 
+
+[Install]
+WantedBy=multi-user.target
